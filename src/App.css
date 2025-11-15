@@ -1,38 +1,74 @@
+/* 전체 앱 중앙 정렬, 배경 흰색 */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
 }
 
-.App-link {
-  color: #61dafb;
+/* 카메라 화면 */
+.App-camera {
+  width: 90%;
+  max-width: 500px;
+  aspect-ratio: 4 / 3;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid #4CAF50;
+  margin-bottom: 20px;
+  background-color: #000; /* 카메라 없는 상태에서는 검은 화면 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* 버튼 */
+.App-button {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(45deg, #4CAF50, #81C784);
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 버튼 아이콘 효과 (예: 카메라 아이콘) */
+.App-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.App-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* 설명 텍스트 */
+.App-text {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #666666;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .App-camera {
+    width: 95%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App-button {
+    width: 70%;
+    justify-content: center;
   }
 }

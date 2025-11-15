@@ -14,47 +14,89 @@ const CustomWebcam = () => {
     }
   }, [webcamRef]);
 
-  const retake = () => {
-    setImgSrc(null);
-  };
+  const retake = () => setImgSrc(null);
 
   return (
-    <div>
+    <Container>
       {imgSrc ? (
-        <img src={imgSrc} alt="webcam" />
+        <CapturedImg src={imgSrc} alt="webcam" />
       ) : (
-        <Webcam
-          height={600}
-          width={600}
+        <StyledWebcam
           ref={webcamRef}
           mirrored={mirrored}
           screenshotFormat="image/jpeg"
           screenshotQuality={0.8}
         />
       )}
-      <div>
+
+      <ButtonWrapper>
         {imgSrc ? (
-          <RetakeBtn onClick={retake}>↺</RetakeBtn>
+          <RetakeBtn onClick={retake}>↺ 다시 찍기</RetakeBtn>
         ) : (
-          <CaptureBtn onClick={capture}>📸</CaptureBtn>
+          <CaptureBtn onClick={capture}>📸 촬영</CaptureBtn>
         )}
-      </div>
-    </div>
+      </ButtonWrapper>
+    </Container>
   );
 };
 
-const CaptureBtn = styled.button`
-  width: 600px;
-  font-size: 30px;
-  border: 3px solid green;
-  border-radius: 8px;
-`;
-
-const RetakeBtn = styled.button`
-  width: 600px;
-  font-size: 30px;
-  border: 3px solid red;
-  border-radius: 8px;
-`;
-
 export default CustomWebcam;
+
+/* 스타일링 */
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+`;
+
+const StyledWebcam = styled(Webcam)`
+  width: 90%;
+  max-width: 500px;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  border: 2px solid #4caf50;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+`;
+
+const CapturedImg = styled.img`
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  border: 2px solid #4caf50;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 90%;
+  max-width: 500px;
+`;
+
+const CaptureBtn = styled.button`
+  padding: 14px 0;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+const RetakeBtn = styled(CaptureBtn)`
+  background: linear-gradient(45deg, #f44336, #e57373);
+`;
